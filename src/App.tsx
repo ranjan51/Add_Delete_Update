@@ -3,37 +3,25 @@ import logo from "./logo.svg";
 import "./App.css";
 
 function App() {
-  const [email, setEmail] = useState<any>("");
-  const [password, setPassword] = useState<any>("");
-  const [user, setUser] = useState<any>([]);
-
-  const handleSubmit = () => {
-    let newuser = {
-      email: email,
-      password: password,
-    };
-    setUser([...user, newuser]);
-  };
-
+  const[user,setUser]  = useState({
+    first:"",
+    last:""
+  })
+  
+  // const[user,setUser]  = useState<any[]>([])
+ const handleChange = (event:any)=>{
+  console.log(event.target);
+    setUser({...user,[event.target.name]:event.target.value})
+   console.log(`first:${user.first}---last:${user.last} `)
+  
+ }
   return (
-    <div className="App">
-      <input
-        type="email"
-        onChange={(e) => setEmail(e.target.value)}
-        value={email}
-      />
-      <br></br>
-      <input
-        type="password"
-        onChange={(e) => setPassword(e.target.value)}
-        value={password}
-      />
-      <button onClick={handleSubmit}>kmk</button>
+    <div>
+   <input type="text" onChange={handleChange} name="first" />
+   <input type="text" onChange={handleChange} name="last" />
+   {/* <input type="text" /> */}
 
-      {user.map((x: any) => {
-        return <h1>{x.email}</h1>;
-      })}
-    </div>
+   </div>
   );
 }
 
